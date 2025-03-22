@@ -1,0 +1,111 @@
+.manual-upload-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  text-align: center;
+}
+
+.manual-upload-container h2 {
+  color: #000000;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.manual-upload-container p {
+  color: #8b8b8b;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.medicine-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.medicine-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.medicine-input input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #ed701d;
+}
+.button-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.add-btn,
+.submit-btn {
+  background: #28a745;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.add-btn:hover {
+  background: #218838;
+}
+
+.submit-btn {
+  background: #00bd16;
+}
+
+.submit-btn:hover {
+  background: #218838;
+}
+
+/* Dark Mode */
+.dark-mode .manual-upload-container {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.dark-mode p {
+  color: #bbb;
+}
+
+.dark-mode h2 {
+  color: #bbb;
+}
+.dark-mode input {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid #bbb;
+}
+
+.dark-mode .submit-btn {
+  background: #218838;
+}
+
+.dark-mode .submit-btn:hover {
+  background: #218838;
+}

@@ -1,0 +1,112 @@
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  transition: color 0.3s ease-in-out;
+}
+
+.drop-zone {
+  width: 350px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px dashed #009835;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.drop-zone.dragging {
+  background: rgba(0, 123, 255, 0.1);
+  border-color: #00b35f;
+  box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
+}
+
+.drop-zone p {
+  margin: 0;
+  padding: 10px;
+  color: #016905;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-button {
+  background: #01bc0a;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-button:hover {
+  background: #008c07;
+}
+
+.click-text {
+  color: #0f9b02;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 🌙 Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #c0bebe;
+}
+
+.dark-mode h2 {
+  color: #ffffff;
+}
+
+.dark-mode .drop-zone {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #01aa14;
+  color: #ffffff;
+}
+
+.dark-mode .drop-zone p {
+  color: #1eff22;
+}
+
+.dark-mode .drop-zone.dragging {
+  background: rgba(0, 255, 26, 0.2);
+  border-color: #33ff00;
+  box-shadow: 0px 0px 15px rgba(30, 255, 79, 0.6);
+}
+
+.dark-mode .upload-button {
+  background: #01930f;
+}
+
+.dark-mode .upload-button:hover {
+  background: #005415;
+}
+
+.dark-mode .click-text {
+  color: #00ff22;
+}
+
+.dark-mode .click-text:hover {
+  color: #0fc144;
+}
