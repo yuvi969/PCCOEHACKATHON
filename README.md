@@ -20,6 +20,7 @@ PCCOEHackathonJigyasa/
 - Node.js
 - Express.js
 - MongoDB (Database)
+- Flask
 
 ## Setup Instructions
 ### Clone the Repository
@@ -51,7 +52,7 @@ PORT=5000
 ```
 
 ## Running the Project
-- Start the backend first (`npm start` in `backend/`)
+- Start the backend first (`nodemon app.js` in `backend/`)
 - Start the frontend (`npm start` in `frontend/`)
 - Open [http://localhost:3000](http://localhost:3000) in your browser
 
