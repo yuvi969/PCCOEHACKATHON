@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import '../styles-pages/uploadmanually.css'
+import { uploadmanually } from '../services'
+import { useNavigate } from 'react-router-dom'
 
 function Uploadmanually() {
   const [medicines, setMedicines] = useState([''])
+  const navigate = useNavigate()
 
   const handleMedicineChange = (index, value) => {
     const updatedMedicines = [...medicines]
@@ -21,9 +24,24 @@ function Uploadmanually() {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('Medicines:', medicines)
-    // Add API call to send the entered medicines
+
+    try {
+      const response = await uploadmanually({ medicinenames: medicines })
+
+      console.log('Response:', response.data)
+      alert(response.data.msg || 'Medicines uploaded successfully!')
+
+      setMedicines([''])
+      navigate('/')
+    } catch (error) {
+      console.error(
+        'Error submitting medicines:',
+        error.response?.data || error
+      )
+      alert(error.response?.data?.msg || 'Something went wrong!')
+    }
   }
 
   return (

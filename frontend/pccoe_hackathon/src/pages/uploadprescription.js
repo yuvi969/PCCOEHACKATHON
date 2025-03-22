@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import '../styles-pages/uploadprescription.css'
+import { Uploadpdf } from '../services'
+import { useNavigate } from 'react-router'
 
 function Uploadprescription() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [dragging, setDragging] = useState(false)
-
+  const navigate = useNavigate()
   const handleDragOver = (event) => {
     event.preventDefault()
     setDragging(true)
@@ -28,10 +30,22 @@ function Uploadprescription() {
     setSelectedFile(event.target.files[0])
   }
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (selectedFile) {
       console.log('Uploading:', selectedFile.name)
-      // Add API call here to send the file to the backend
+
+      const formData = new FormData()
+      formData.append('file', selectedFile)
+
+      try {
+        const response = await Uploadpdf(formData)
+        console.log('Upload successful:', response.data)
+        alert('File uploaded successfully!')
+        navigate('/')
+      } catch (error) {
+        console.error('Upload failed:', error.response?.data || error)
+        alert(error.response?.data?.msg || 'Upload failed!')
+      }
     } else {
       alert('Please select a file first.')
     }
@@ -45,7 +59,7 @@ function Uploadprescription() {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => document.getElementById('fileInput').click()} // Clicking opens file selection
+        onClick={() => document.getElementById('fileInput').click()}
       >
         {selectedFile ? (
           <p>{selectedFile.name}</p>

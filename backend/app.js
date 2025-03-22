@@ -18,10 +18,6 @@ const routes = require('./router')
 
 app.use('/api', routes)
 
-app.get('/', (req, res) => {
-  res.send('Server is running')
-})
-
 const start = async () => {
   try {
     await Dataconnect(process.env.Mongo_URI)
