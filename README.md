@@ -44,7 +44,7 @@ Flask==3.1.0
 groq==0.18.0
 python-dotenv==1.0.1
 requests==2.32.3
-run python -r requirements.txt in terminal
+run pip -r requirements.txt in terminal
 python project_api.py
 ```
 
