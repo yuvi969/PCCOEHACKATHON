@@ -95,6 +95,27 @@ class MedicineInfoAgent:
             print(f"Error fetching from OpenFDA: {e}")
             return "NOT_FOUND"
 
+    def get_active_ingredient_tata_1mg(self, medicine_name):
+        try:
+            search_url = f"https://www.1mg.com/search/all?name={medicine_name.replace(' ', '%20')}"
+            response = requests.get(search_url)
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.content, "html.parser")
+                medicine_link = soup.find("a", {"class": "style__product-link___1fcbx"})
+                if medicine_link:
+                    product_url = f"https://www.1mg.com{medicine_link['href']}"
+                    product_response = requests.get(product_url)
+                    product_soup = BeautifulSoup(product_response.content, "html.parser")
+
+                    salt_section = product_soup.find("div", text="Salt Composition")
+                    if salt_section:
+                        salt_value = salt_section.find_next("div").text
+                        return salt_value.strip()
+            return "NOT_FOUND"
+        except Exception as e:
+            print(f"Error fetching from Tata 1mg: {e}")
+            return "NOT_FOUND"
+
 app = Flask(__name__)
 
 @app.route("/upload", methods=["POST"])
