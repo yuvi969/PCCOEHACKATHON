@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const User = require('./userschema')
+const axios = require('axios')
 require('dotenv').config()
 
 const isAuth = (req, res, next) => {
@@ -14,6 +15,10 @@ const isAuth = (req, res, next) => {
   }
   return res.status(401).json({ msg: 'Unauthorized' })
 }
+
+router.post('/process', (req, res) => {
+  res.json({ message: 'Processing successful!' })
+})
 
 router.post('/logout', async (req, res) => {
   try {
@@ -47,36 +52,55 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json({ msg: 'Logged in successfully' })
 })
 
-const upload = multer({ storage: multer.memoryStorage() })
+const upload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true)
+    } else {
+      cb(new Error('Only image files are allowed!'), false)
+    }
+  },
+})
 
-router.post('/upload', isAuth, upload.single('file'), async (req, res) => {
+const FormData = require('form-data')
+
+router.post('/upload', upload.single('file'), async (req, res) => {
   if (!req.file) {
-    return res.status(400).json({ error: 'No file uploaded.' })
+    return res
+      .status(400)
+      .json({ error: 'No file uploaded or invalid file type.' })
   }
 
   try {
-    const response = await fetch('http://localhost:5000/process', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/pdf',
-      },
-      body: req.file.buffer,
+    // Create FormData object and append image file
+    const formData = new FormData()
+    formData.append('file', req.file.buffer, {
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
     })
 
-    const responseText = await response.text()
-    console.log('Response from /process:', responseText)
+    // Forward the image to Flask for OCR processing
+    const flaskResponse = await axios.post(
+      'http://127.0.0.1:5000/upload',
+      formData,
+      {
+        headers: {
+          ...formData.getHeaders(), // Important: Add required headers for FormData
+        },
+      }
+    )
 
-    const result = JSON.parse(responseText)
-    res.json(result)
+    res.json(flaskResponse.data) // Return Flask response to frontend
   } catch (error) {
-    console.error('Error forwarding PDF:', error)
+    console.error('Error processing image:', error)
     res
       .status(500)
-      .json({ error: 'Failed to send PDF.', details: error.message })
+      .json({ error: 'Failed to process image.', details: error.message })
   }
 })
 
-router.post('/manualupload', isAuth, async (req, res) => {
+router.post('/manualupload', async (req, res) => {
   let { medicinenames } = req.body
 
   if (!medicinenames) {
@@ -86,19 +110,10 @@ router.post('/manualupload', isAuth, async (req, res) => {
     medicinenames = [medicinenames]
   }
 
-  medicinenames = medicinenames
-    .map((name) => name.trim())
-    .filter((name) => name)
-
-  const uniqueMedicines = [...new Set(medicinenames)]
-  if (uniqueMedicines.length !== medicinenames.length) {
-    return res
-      .status(400)
-      .json({ msg: 'Some medicines are duplicates within input.' })
-  }
+  medicinenames = [...new Set(medicinenames.map((name) => name.trim()))]
 
   try {
-    const existingMeds = await Medicine.find({ name: { $in: uniqueMedicines } })
+    const existingMeds = await Medicine.find({ name: { $in: medicinenames } })
 
     if (existingMeds.length > 0) {
       return res.status(400).json({
@@ -107,12 +122,12 @@ router.post('/manualupload', isAuth, async (req, res) => {
       })
     }
 
-    const newMeds = uniqueMedicines.map((name) => ({ name }))
+    const newMeds = medicinenames.map((name) => ({ name }))
     await Medicine.insertMany(newMeds)
 
     res
       .status(201)
-      .json({ msg: 'Medicines added successfully.', added: uniqueMedicines })
+      .json({ msg: 'Medicines added successfully.', added: medicinenames })
   } catch (error) {
     console.error(error)
     res.status(500).json({ msg: 'Server error' })

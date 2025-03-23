@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import '../styles-pages/uploadmanually.css'
-import { uploadmanually } from '../services'
+import { uploadManually } from '../services'
 import { useNavigate } from 'react-router-dom'
 
 function Uploadmanually() {
@@ -28,7 +28,7 @@ function Uploadmanually() {
     console.log('Medicines:', medicines)
 
     try {
-      const response = await uploadmanually({ medicinenames: medicines })
+      const response = await uploadManually({ medicinenames: medicines })
 
       console.log('Response:', response.data)
       alert(response.data.msg || 'Medicines uploaded successfully!')

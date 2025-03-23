@@ -194,3 +194,19 @@ body {
   background: #a71d2a;
   transform: scale(1.05);
 }
+
+.footer-quote {
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #6c757d;
+  text-align: center;
+}
+.footer-quote {
+  margin-top: 15px;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #6c757d;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}

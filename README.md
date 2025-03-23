@@ -1,8 +1,8 @@
-# PCCOE Hackathon Project
+# Medicine Scanner - AI-powered Prescription Analysis
 
 ## Overview
-This project consists of a **frontend** and a **backend** that work together to provide an AI-powered prescription scanner and generic medicine recommender.
 
+<<<<<<< HEAD
 ## Folder Structure
 ```
 PCCOEHackathonJigyasa/
@@ -10,41 +10,31 @@ PCCOEHackathonJigyasa/
 │-- backend/    # Node.js & Express backend
 │-- ocr/    # Python Backend
 ```
+=======
+This project is an AI-powered web application that extracts text from prescription images, identifies medicines, retrieves their active ingredients, and finds generic alternatives using various APIs.
+>>>>>>> 8602580 (Yuvis last commit of the day)
 
-## Technologies Used
-### Frontend:
-- React.js
-- Tailwind CSS
-- Axios (for API requests)
+## Features
 
-### Backend:
-- Node.js
-- Express.js
-- MongoDB (Database)
-- Flask
+- **Image-based OCR**: Uses **Llama Vision 90B Preview** (Groq Cloud API) to extract text from prescription images.
+- **Medicine Data Scraping**: Fetches medicine details from **Tata 1mg** and **OpenFDA**.
+- **Active Ingredient Retrieval**: Extracts active ingredients of medicines.
+- **Generic Medicine Search**: Uses **RxNorm API** to find generic medicine alternatives.
+- **Responsive UI**: User-friendly interface with **light & dark mode**.
 
-## Setup Instructions
-### Clone the Repository
-```bash
-git clone https://github.com/yuvi969/PCCOEHACKATHON.git
-cd PCCOEHACKATHON
-```
+## Tech Stack
 
-### Install Dependencies
-#### Frontend:
-```bash
-cd frontend
-npm install
-npm start
-```
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (Optional for storing history)
+- **AI & APIs**:
+  - Groq Cloud API (Llama Vision 90B Preview) for OCR
+  - Scraping Tata 1mg & OpenFDA for medicine details
+  - RxNorm API for generic medicine lookup
 
-#### Backend:
-```bash
-cd backend
-npm install
-npm start
-```
+## Installation & Setup
 
+<<<<<<< HEAD
 #### ocr:
 ```bash
 create requirements.txt file
@@ -75,10 +65,45 @@ groq_key=your_key
 - Start the frontend (`npm start` in `frontend/`)
 - -Start the python backend
 - Open [http://localhost:3000](http://localhost:3000) in your browser
+=======
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/your-repo/medicine-scanner.git
+   cd medicine-scanner
+   ```
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
+3. **Set up environment variables** (`.env` file)
+   ```sh
+   GROQ_API_KEY=your_groq_api_key
+   RXNORM_API_KEY=your_rxnorm_api_key
+   ```
+4. **Run the development server**
+   ```sh
+   npm start
+   ```
+
+## Usage
+
+1. Upload a prescription image.
+2. The AI extracts text and identifies medicines.
+3. Medicine details and generic alternatives are displayed in a tabular format.
+4. Switch between **light mode & dark mode** for better visibility.
+
+## API References
+
+- [Groq Cloud - Llama Vision 90B](https://groq.com/)
+- [Tata 1mg](https://www.1mg.com/)
+- [OpenFDA](https://open.fda.gov/)
+- [RxNorm API](https://www.nlm.nih.gov/research/umls/rxnorm/)
+>>>>>>> 8602580 (Yuvis last commit of the day)
 
 ## Contributing
-Feel free to fork the repo and submit pull requests!
+
+Feel free to fork and submit PRs for improvements or new features!
 
 ## License
-This project is open-source and available under the MIT License.
 
+MIT License

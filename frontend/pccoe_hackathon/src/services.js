@@ -2,13 +2,14 @@ import axios from 'axios'
 
 const URl = 'http://localhost:5000/api'
 
-const uploadmanually = async (data) => {
+const uploadManually = async (data) => {
   return await axios.post(`${URl}/manualupload`, data)
 }
 
-const Uploadpdf = async (data) => {
+const uploadImage = async (data) => {
   return await axios.post(`${URl}/upload`, data, {
     headers: { 'Content-Type': 'multipart/form-data' },
+    withCredentials: true,
   })
 }
 
@@ -19,12 +20,9 @@ const registerNewUser = async (data) => {
   })
 }
 
-
-
 const logout = async () => {
   return await axios.post(`${URl}/logout`, {}, { withCredentials: true })
 }
-
 
 const login = async (data) => {
   try {
@@ -37,4 +35,4 @@ const login = async (data) => {
   }
 }
 
-export { uploadmanually, Uploadpdf ,registerNewUser,logout,login}
+export { uploadManually, uploadImage, registerNewUser, logout, login }

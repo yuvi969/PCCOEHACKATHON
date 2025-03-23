@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router'
 import { Homepage } from './pages/homepage'
-import { Uploadprescription } from './pages/uploadprescription'
+import { MedicineScanner } from './pages/uploadprescription'
 import { HowItWorks } from './pages/howitworks'
 import { About } from './pages/aboutpage'
 import { Uploadmanually } from './pages/uploadmunually'
@@ -18,7 +18,7 @@ function App() {
           <Route path='/homepage' element={<Homepage />}></Route>
           <Route
             path='/upload-prescription'
-            element={<Uploadprescription />}
+            element={<MedicineScanner />}
           ></Route>
           <Route path='/howitworks' element={<HowItWorks />}></Route>
           <Route path='/about' element={<About />}></Route>

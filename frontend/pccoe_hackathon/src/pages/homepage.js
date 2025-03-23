@@ -8,6 +8,24 @@ function Homepage() {
     return localStorage.getItem('darkMode') === 'enabled'
   })
 
+  const quotes = [
+    '“It is health that is real wealth and not pieces of gold and silver.” — Mahatma Gandhi',
+    '“To keep the body in good health is a duty… otherwise, we shall not be able to keep our mind strong and clear."-— Buddha',
+    '“The greatest medicine of all is teaching people how not to need it..” — Hippocrates',
+    '“The part can never be well unless the whole is well.” — Plato',
+    '“Healing is a matter of time, but it is sometimes also a matter of opportunity.” — Hippocrates',
+  ]
+
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length)
+    }, 6000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   const handleLogout = async () => {
     try {
       await logout()
@@ -84,6 +102,7 @@ function Homepage() {
           <Link to='/contacts'>Contact Us</Link>
         </div>
       </footer>
+      <p className='footer-quote'>{quotes[currentQuoteIndex]}</p>
     </>
   )
 }

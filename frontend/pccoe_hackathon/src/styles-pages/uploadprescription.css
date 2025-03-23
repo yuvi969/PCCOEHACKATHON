@@ -1,112 +1,191 @@
-.upload-container {
+/* Enhanced Table Styling */
+.medicine-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 18px;
+  min-width: 600px;
+  border-radius: 6px; /* Rounded corners */
+  overflow: hidden; /* Ensure rounded corners apply */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.medicine-table th,
+.medicine-table td {
+  border: 2px solid #ccc;
+  padding: 12px;
+  text-align: left;
+}
+
+.medicine-table th {
+  background-color: #ececec;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+}
+
+.medicine-table tr:nth-child(even) {
+  background-color: #f0f9f0; /* Gentle green tint for alternate rows */
+}
+
+.medicine-table tr:hover {
+  background-color: #e3e3e3; /* Highlight with subtle tone */
+}
+
+/* Enhanced Container Styling */
+.medicine-scanner-container {
+  margin-top: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  padding: 40px;
-}
-
-h2 {
-  font-size: 2rem;
-  color: #2c3e50;
-  text-align: center;
-  transition: color 0.3s ease-in-out;
-}
-
-.drop-zone {
-  width: 350px;
-  height: 180px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 2px dashed #009835;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  color: #2c3e50;
-  font-size: 1.2rem;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #fefefe;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Enhanced Title */
+.medicine-scanner-title {
+  font-size: 48px;
   font-weight: bold;
-  position: relative;
+  color: #444;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif; /* Modern font family */
 }
 
-.drop-zone.dragging {
-  background: rgba(0, 123, 255, 0.1);
-  border-color: #00b35f;
-  box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.5);
+/* Enhanced File Input */
+.medicine-scanner-input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffffff;
+  font-size: 14px;
+  text-align: center;
+  transition: border-color 0.3s ease-in-out;
+  width: 100%;
+  max-width: 400px;
 }
 
-.drop-zone p {
-  margin: 0;
-  padding: 10px;
-  color: #016905;
+.medicine-scanner-input:hover {
+  border-color: #00aa44;
 }
 
-.file-input {
-  display: none;
-}
-
-.upload-button {
-  background: #01bc0a;
+/* Enhanced Upload Button */
+.medicine-scanner-button {
+  margin-top: 20px;
+  background: linear-gradient(45deg, #007b00, #005c19); /* Subtle gradient */
   color: white;
-  font-size: 1.2rem;
-  padding: 12px 24px;
+  padding: 12px 20px;
+  font-size: 1.1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s, background 0.3s ease-in-out;
+  font-family: 'Roboto', sans-serif;
 }
 
-.upload-button:hover {
-  background: #008c07;
+.medicine-scanner-button:hover {
+  background-color: #005c19;
+  transform: scale(1.03); /* Slight scale effect */
 }
 
-.click-text {
-  color: #0f9b02;
-  text-decoration: underline;
-  cursor: pointer;
+.medicine-scanner-button:disabled {
+  background-color: #bfbfbf;
+  cursor: not-allowed;
 }
 
-/* 🌙 Dark Mode */
+/* Enhanced Result Box */
+.medicine-scanner-result {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  text-align: center;
+  overflow-x: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 6px;
+}
+
+/* Footer Styling */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #888;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Dark Mode */
 .dark-mode {
   background-color: #121212;
-  color: #c0bebe;
+  color: #e0e0e0;
 }
 
-.dark-mode h2 {
+/* Dark Mode - Container */
+.dark-mode .medicine-scanner-container {
+  background-color: #181818;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Softer white shadow */
+}
+
+/* Dark Mode - Title */
+.dark-mode .medicine-scanner-title {
   color: #ffffff;
 }
 
-.dark-mode .drop-zone {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #01aa14;
+/* Dark Mode - File Input */
+.dark-mode .medicine-scanner-input {
+  background-color: #252525;
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+.dark-mode .medicine-scanner-input:hover {
+  border-color: #00ff88;
+}
+
+/* Dark Mode - Upload Button */
+.dark-mode .medicine-scanner-button {
+  background: linear-gradient(45deg, #008800, #004d00);
   color: #ffffff;
 }
 
-.dark-mode .drop-zone p {
-  color: #1eff22;
+.dark-mode .medicine-scanner-button:hover {
+  background-color: #006600;
 }
 
-.dark-mode .drop-zone.dragging {
-  background: rgba(0, 255, 26, 0.2);
-  border-color: #33ff00;
-  box-shadow: 0px 0px 15px rgba(30, 255, 79, 0.6);
+/* Dark Mode - Result Box */
+.dark-mode .medicine-scanner-result {
+  background: #222;
+  color: #e0e0e0;
+  border: 1px solid #444;
 }
 
-.dark-mode .upload-button {
-  background: #01930f;
+/* Dark Mode - Table */
+.dark-mode .medicine-table {
+  background-color: #222;
+  color: #e0e0e0;
+  border-radius: 6px;
 }
 
-.dark-mode .upload-button:hover {
-  background: #005415;
+.dark-mode .medicine-table th {
+  background-color: #006600;
+  color: white;
 }
 
-.dark-mode .click-text {
-  color: #00ff22;
+.dark-mode .medicine-table tr:nth-child(even) {
+  background-color: #252525;
 }
 
-.dark-mode .click-text:hover {
-  color: #0fc144;
+.dark-mode .medicine-table tr:hover {
+  background-color: #303030;
+}
+
+/* Dark Mode - Footer */
+.dark-mode footer {
+  color: #bbb;
 }
