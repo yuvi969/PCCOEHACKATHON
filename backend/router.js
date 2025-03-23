@@ -8,9 +8,6 @@ const bcrypt = require('bcrypt')
 const User = require('./userschema')
 require('dotenv').config()
 
-
-
-
 const isAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next()
@@ -18,11 +15,17 @@ const isAuth = (req, res, next) => {
   return res.status(401).json({ msg: 'Unauthorized' })
 }
 
-
+router.post('/logout', async (req, res) => {
+  try {
+    req.logOut((err) => {
+      if (err) return res.status(500).json({ msg: 'Logout failed' })
+      res.json({ msg: 'Logged out successfully' })
+    })
+  } catch (error) {}
+})
 
 router.post('/register', async (req, res) => {
-  const { username, password, confirmpassword} = req.body
-
+  const { username, password, confirmpassword } = req.body
 
   const existinguser = await User.findOne({ username })
   if (existinguser) {
@@ -40,17 +43,13 @@ router.post('/register', async (req, res) => {
   res.status(200).json({ msg: 'User registered successfully' })
 })
 
-
-
-
 router.post('/login', passport.authenticate('local'), (req, res) => {
-  res.json({ msg: 'Logged in successfully'})
+  res.json({ msg: 'Logged in successfully' })
 })
-
 
 const upload = multer({ storage: multer.memoryStorage() })
 
-router.post('/upload',isAuth, upload.single('file'), async (req, res) => {
+router.post('/upload', isAuth, upload.single('file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' })
   }
@@ -77,7 +76,7 @@ router.post('/upload',isAuth, upload.single('file'), async (req, res) => {
   }
 })
 
-router.post('/manualupload',isAuth, async (req, res) => {
+router.post('/manualupload', isAuth, async (req, res) => {
   let { medicinenames } = req.body
 
   if (!medicinenames) {

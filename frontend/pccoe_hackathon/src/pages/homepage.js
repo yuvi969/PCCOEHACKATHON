@@ -1,11 +1,23 @@
 import { Link } from 'react-router'
 import '../styles-pages/homepage.css'
 import { useState, useEffect } from 'react'
+import { logout } from '../services'
 
 function Homepage() {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'enabled'
   })
+
+  const handleLogout = async () => {
+    try {
+      await logout()
+      localStorage.removeItem('userToken')
+      window.location.href = '/'
+    } catch (error) {
+      console.error('Logout failed:', error)
+      alert('Logout failed. Please try again.')
+    }
+  }
 
   useEffect(() => {
     if (darkMode) {
@@ -39,6 +51,9 @@ function Homepage() {
           <Link to='/contacts'>Contacts</Link>
           <button className='toggle-dark-button' onClick={toggleDarkMode}>
             {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+          </button>
+          <button className='logout-button' onClick={handleLogout}>
+            🚪 Logout
           </button>
         </nav>
       </header>

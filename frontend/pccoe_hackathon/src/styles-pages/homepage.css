@@ -178,3 +178,19 @@ body {
 .footer-links a:hover {
   color: #0056b3;
 }
+
+.logout-button {
+  background: #dc3545;
+  color: white;
+  font-size: 1.1rem;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.logout-button:hover {
+  background: #a71d2a;
+  transform: scale(1.05);
+}

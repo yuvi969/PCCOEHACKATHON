@@ -45,7 +45,7 @@ function Userlogin({ onLogin }) {
           onChange={handlechange}
           required
         />
-        <button type='submit' className='studentloginbutton'>
+        <button type='submit' className='studentloginbuttonn'>
           Log in
         </button>
       </form>
