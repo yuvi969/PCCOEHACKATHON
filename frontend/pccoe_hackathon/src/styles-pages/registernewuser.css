@@ -1,0 +1,97 @@
+/* Centering the form container */
+.createaccdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #f3e5f5);
+  text-align: center;
+  margin: 20px;
+}
+
+/* Header (Create Account) */
+.createaccheader {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Error message */
+.error-message {
+  color: rgb(244, 85, 85);
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Form styling */
+.create-new-form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Input fields */
+.create-new-form input {
+  width: 580px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.create-new-form input:focus {
+  border-color: #00ea17;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 234, 176, 0.3);
+}
+
+/* Sign Up Button */
+.signupbutton {
+  background: #00c421;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.signupbutton:hover {
+  background-color: #007724;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

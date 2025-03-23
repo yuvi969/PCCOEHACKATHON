@@ -61,6 +61,14 @@ function Homepage() {
           </div>
         </div>
       </section>
+      <footer className='homepage-footer'>
+        <p>© {new Date().getFullYear()} MediScan. All rights reserved.</p>
+        <div className='footer-links'>
+          <Link to='/terms'>Terms & Conditions</Link>
+          <Link to='/privacy'>Privacy Policy</Link>
+          <Link to='/contacts'>Contact Us</Link>
+        </div>
+      </footer>
     </>
   )
 }

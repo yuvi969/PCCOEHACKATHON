@@ -3,12 +3,54 @@ const router = express.Router()
 const multer = require('multer')
 const Medicine = require('./medicine.js')
 const mongoose = require('mongoose')
-
+const passport = require('passport')
+const bcrypt = require('bcrypt')
+const User = require('./userschema')
 require('dotenv').config()
+
+
+
+
+const isAuth = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  return res.status(401).json({ msg: 'Unauthorized' })
+}
+
+
+
+router.post('/register', async (req, res) => {
+  const { username, password, confirmpassword} = req.body
+
+
+  const existinguser = await User.findOne({ username })
+  if (existinguser) {
+    return res.status(403).json({ msg: 'User already exists' })
+  }
+
+  const hashedpassword = await bcrypt.hash(password, 10)
+
+  const new_user = new User({
+    username,
+    password: hashedpassword,
+  })
+
+  await new_user.save()
+  res.status(200).json({ msg: 'User registered successfully' })
+})
+
+
+
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  res.json({ msg: 'Logged in successfully'})
+})
+
 
 const upload = multer({ storage: multer.memoryStorage() })
 
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/upload',isAuth, upload.single('file'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded.' })
   }
@@ -25,7 +67,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     const responseText = await response.text()
     console.log('Response from /process:', responseText)
 
-    const result = JSON.parse(responseText) // Try parsing as JSON
+    const result = JSON.parse(responseText)
     res.json(result)
   } catch (error) {
     console.error('Error forwarding PDF:', error)
@@ -35,7 +77,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   }
 })
 
-router.post('/manualupload', async (req, res) => {
+router.post('/manualupload',isAuth, async (req, res) => {
   let { medicinenames } = req.body
 
   if (!medicinenames) {

@@ -1,0 +1,99 @@
+/* Centering the content */
+.Homediv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff, #ece5f8);
+  color: white;
+  text-align: center;
+}
+
+/* App name (MediScan) */
+.appname-header {
+  font-size: 5rem;
+  color: rgb(98, 96, 96);
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Subtitle */
+.subtitle-container h3 {
+  font-size: 1.8rem;
+  color: rgb(98, 96, 96);
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Button container */
+.buttoncontainer {
+  margin-top: 10px;
+}
+
+.studentloginbutton {
+  background: #28a745;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.studentloginbutton:hover {
+  background-color: #009548;
+  transform: scale(1.05);
+}
+
+/* New Account Link */
+a {
+  text-decoration: none;
+  color: #4212ff;
+  font-weight: 500;
+  margin-top: 15px;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #d4d4d4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heart-icon {
+  color: red;
+  margin: 0 10px;
+  font-size: 2rem;
+  animation: heartbeat 1.5s infinite;
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

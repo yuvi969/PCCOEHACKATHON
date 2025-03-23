@@ -12,4 +12,29 @@ const Uploadpdf = async (data) => {
   })
 }
 
-export { uploadmanually, Uploadpdf }
+const registerNewUser = async (data) => {
+  console.log('Sending registration data:', data)
+  return await axios.post(`${URl}/register`, data, {
+    withCredentials: true,
+  })
+}
+
+
+
+const logout = async () => {
+  return await axios.post(`${URl}/logout`, {}, { withCredentials: true })
+}
+
+
+const login = async (data) => {
+  try {
+    const response = await axios.post(`${URl}/login`, data, {
+      withCredentials: true,
+    })
+    return response.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export { uploadmanually, Uploadpdf ,registerNewUser,logout,login}

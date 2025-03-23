@@ -4,12 +4,18 @@ import { Uploadprescription } from './pages/uploadprescription'
 import { HowItWorks } from './pages/howitworks'
 import { About } from './pages/aboutpage'
 import { Uploadmanually } from './pages/uploadmunually'
+import { Startpage } from './pages/startpage'
+import { Createacc } from './pages/registernewuser'
+import { Userlogin } from './pages/userlogin'
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Homepage />}></Route>
+          <Route path='/' element={<Startpage />}></Route>
+          <Route path='/register' element={<Createacc />}></Route>
+          <Route path='/userlogin' element={<Userlogin />}></Route>
+          <Route path='/homepage' element={<Homepage />}></Route>
           <Route
             path='/upload-prescription'
             element={<Uploadprescription />}
