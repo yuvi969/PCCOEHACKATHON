@@ -2,7 +2,6 @@
 
 ## Overview
 
-<<<<<<< HEAD
 ## Folder Structure
 ```
 PCCOEHackathonJigyasa/
@@ -34,7 +33,6 @@ This project is an AI-powered web application that extracts text from prescripti
 
 ## Installation & Setup
 
-<<<<<<< HEAD
 #### ocr:
 ```bash
 create requirements.txt file
