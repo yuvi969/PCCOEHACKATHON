@@ -34,9 +34,10 @@ This project is an AI-powered web application that extracts text from prescripti
 ## Installation & Setup
 
 #### ocr:
-```bash
 create requirements.txt file
 add this to it
+```bash
+
 beautifulsoup4==4.13.3
 Flask==3.1.0
 groq==0.18.0
