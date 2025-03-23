@@ -42,7 +42,7 @@ Flask==3.1.0
 groq==0.18.0
 python-dotenv==1.0.1
 requests==2.32.3
-run pip -r requirements.txt in terminal
+run pip install -r requirements.txt in terminal
 python project_api.py
 ```
 
@@ -55,7 +55,7 @@ PORT=5000
 ## Environment Variables
 Create a `.env` file in the ocr:
 ```
-groq_key=your_key
+groq_key=your_api_key
 ```
 
 ## Running the Project
