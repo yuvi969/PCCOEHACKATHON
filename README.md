@@ -8,6 +8,7 @@ This project consists of a **frontend** and a **backend** that work together to 
 PCCOEHackathonJigyasa/
 │-- frontend/   # React-based frontend
 │-- backend/    # Node.js & Express backend
+│-- ocr/    # Python Backend
 ```
 
 ## Technologies Used
