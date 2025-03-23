@@ -63,3 +63,19 @@ def get_generic_medicines_by_active_ingredient(active_ingredient):
     except Exception as e:
         print(f"Error fetching generic medicines: {e}")
         return []
+
+
+
+class MedicineInfoAgent:
+    def __init__(self):
+        self.sources = {
+            "tata_1mg": self.get_active_ingredient_tata_1mg,
+            "openfda": self.get_active_ingredient_openfda,
+        }
+
+    def get_active_ingredient(self, medicine_name):
+        for source, func in self.sources.items():
+            result = func(medicine_name)
+            if result and result != "NOT_FOUND":
+                return result
+        return "NOT_FOUND"
