@@ -35,3 +35,31 @@ def extract_image(image_file):
         model="llama-3.2-90b-vision-preview",
     )
     return chat_completion.choices[0].message.content.strip()
+
+
+
+def get_generic_medicines_by_active_ingredient(active_ingredient):
+    
+    try:
+        rxcui_url = "https://rxnav.nlm.nih.gov/REST/rxcui.json"
+        rxcui_response = requests.get(rxcui_url, params={"name": active_ingredient})
+        rxcui_data = rxcui_response.json()
+
+        rxcui = rxcui_data.get("idGroup", {}).get("rxnormId", [])
+        if not rxcui:
+            return []
+
+        rxcui = rxcui[0]  # Use the first RxCUI found
+        related_url = f"https://rxnav.nlm.nih.gov/REST/rxcui/{rxcui}/related.json"
+        related_response = requests.get(related_url, params={"tty": "SCD"})
+        related_data = related_response.json()
+
+        medicines = [
+            concept["name"]
+            for group in related_data.get("relatedGroup", {}).get("conceptGroup", [])
+            for concept in group.get("conceptProperties", [])
+        ]
+        return medicines if medicines else ["No generic medicines found."]
+    except Exception as e:
+        print(f"Error fetching generic medicines: {e}")
+        return []
