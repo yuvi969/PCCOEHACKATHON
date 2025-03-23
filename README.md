@@ -44,7 +44,7 @@ groq==0.18.0
 python-dotenv==1.0.1
 requests==2.32.3
 run pip install -r requirements.txt in terminal
-python project_api.py
+run python app.py in terminal
 ```
 
 ## Environment Variables
