@@ -97,5 +97,25 @@ class MedicineInfoAgent:
 
 app = Flask(__name__)
 
+@app.route("/upload", methods=["POST"])
+def upload_image():
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    image_file = request.files["file"]
+    medicines = extract_image(image_file)
+    medicine_list = medicines.split(",")
+
+    agent = MedicineInfoAgent()
+    results = {}
+    for medicine in medicine_list:
+        medicine = medicine.strip()
+        active_ingredient = agent.get_active_ingredient(medicine)
+        if active_ingredient != "NOT_FOUND":
+            generic_medicines = get_generic_medicines_by_active_ingredient(active_ingredient)
+            results[medicine] = generic_medicines[:2]
+    
+    return jsonify({"extracted_medicines": medicine_list, "generic_medicines": results})
+
 if __name__ == "__main__":
     app.run(debug=True)
