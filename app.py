@@ -80,6 +80,21 @@ class MedicineInfoAgent:
                 return result
         return "NOT_FOUND"
 
+    def get_active_ingredient_openfda(self, medicine_name):
+        try:
+            base_url = "https://api.fda.gov/drug/label.json"
+            params = {"search": f"openfda.brand_name:{medicine_name}", "limit": 1}
+            response = requests.get(base_url, params=params)
+            data = response.json()
+
+            if "results" in data and len(data["results"]) > 0:
+                ingredients = data["results"][0]["openfda"].get("generic_name", ["NOT_FOUND"])
+                return ", ".join(ingredients)
+            return "NOT_FOUND"
+        except Exception as e:
+            print(f"Error fetching from OpenFDA: {e}")
+            return "NOT_FOUND"
+
 app = Flask(__name__)
 
 if __name__ == "__main__":
