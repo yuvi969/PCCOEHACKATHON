@@ -79,3 +79,8 @@ class MedicineInfoAgent:
             if result and result != "NOT_FOUND":
                 return result
         return "NOT_FOUND"
+
+app = Flask(__name__)
+
+if __name__ == "__main__":
+    app.run(debug=True)
